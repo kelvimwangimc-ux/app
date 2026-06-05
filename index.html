@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A secure digital wallet application for managing your finances">
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Digital Wallet">
+    
+    <link rel="manifest" href="/app/manifest.json">
+    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dy='.3em' font-weight='bold'>💳</text></svg>">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dy='.3em' font-weight='bold'>💳</text></svg>">
+    
     <title>Digital Wallet</title>
     <style>
         * {
@@ -10,6 +21,12 @@
             padding: 0;
             box-sizing: border-box;
         }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -17,23 +34,49 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
         }
+        
         .container {
             text-align: center;
             color: white;
             padding: 20px;
+            max-width: 500px;
+            width: 100%;
         }
+        
+        .wallet-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
         h1 {
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
+        
         p {
-            font-size: 1.2em;
-            opacity: 0.9;
+            font-size: 1.1em;
+            opacity: 0.95;
             margin-bottom: 30px;
+            line-height: 1.6;
         }
-        a {
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        a, button {
             display: inline-block;
             padding: 12px 30px;
             background-color: white;
@@ -41,19 +84,94 @@
             text-decoration: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1em;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
         }
-        a:hover {
+        
+        a:hover, button:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            background-color: #f0f0f0;
+        }
+        
+        a:active, button:active {
+            transform: translateY(0);
+        }
+        
+        .secondary-btn {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .secondary-btn:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+        
+        .install-btn {
+            display: none;
+        }
+        
+        .install-btn.show {
+            display: block;
+        }
+        
+        .status {
+            margin-top: 20px;
+            font-size: 0.9em;
+            opacity: 0.8;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>💳 Digital Wallet</h1>
-        <p>Welcome to your digital wallet application</p>
-        <a href="https://github.com/kelvimwangimc-ux/app">View on GitHub</a>
+        <div class="wallet-icon">💳</div>
+        <h1>Digital Wallet</h1>
+        <p>A secure digital wallet application for managing your finances</p>
+        
+        <div class="button-group">
+            <button id="installBtn" class="install-btn">📥 Install App</button>
+            <a href="https://github.com/kelvimwangimc-ux/app" class="secondary-btn">View on GitHub</a>
+        </div>
+        
+        <div class="status">
+            <p>✓ PWA Ready - Can be installed as an app</p>
+        </div>
     </div>
+
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/app/sw.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed:', err));
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.add('show');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response: ${outcome}`);
+                deferredPrompt = null;
+                installBtn.classList.remove('show');
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+        });
+    </script>
 </body>
 </html>
