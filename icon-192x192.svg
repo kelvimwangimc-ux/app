@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect fill="#667eea" width="192" height="192"/>
+  <rect x="30" y="50" width="132" height="80" rx="8" fill="white" opacity="0.9"/>
+  <circle cx="50" cy="70" r="6" fill="#667eea"/>
+  <text x="96" y="110" font-size="40" fill="#667eea" text-anchor="middle" font-weight="bold">💳</text>
+</svg>
