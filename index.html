@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="A secure digital wallet application for managing your finances">
     <meta name="theme-color" content="#667eea">
     <meta name="mobile-web-app-capable" content="yes">
@@ -11,8 +11,8 @@
     <meta name="apple-mobile-web-app-title" content="Digital Wallet">
     
     <link rel="manifest" href="/app/manifest.json">
-    <link rel="icon" type="image/png" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dy='.3em' font-weight='bold'>💳</text></svg>">
-    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dy='.3em' font-weight='bold'>💳</text></svg>">
+    <link rel="icon" type="image/svg+xml" href="/app/icon-192x192.svg">
+    <link rel="apple-touch-icon" href="/app/icon-192x192.svg">
     
     <title>Digital Wallet</title>
     <style>
@@ -28,7 +28,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
@@ -88,6 +88,8 @@
             border: none;
             cursor: pointer;
             transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: transparent;
         }
         
         a:hover, button:hover {
@@ -171,6 +173,7 @@
 
         window.addEventListener('appinstalled', () => {
             console.log('PWA was installed');
+            deferredPrompt = null;
         });
     </script>
 </body>
