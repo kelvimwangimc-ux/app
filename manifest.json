@@ -2,7 +2,7 @@
   "name": "Digital Wallet",
   "short_name": "Wallet",
   "description": "A secure digital wallet application for managing your finances",
-  "start_url": "/app/",
+  "start_url": "/app/index.html",
   "scope": "/app/",
   "display": "standalone",
   "orientation": "portrait-primary",
@@ -10,13 +10,13 @@
   "background_color": "#ffffff",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dy='.3em' font-weight='bold'>💳</text></svg>",
+      "src": "/app/icon-192x192.svg",
       "sizes": "192x192",
       "type": "image/svg+xml",
       "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect fill='%23667eea' width='512' height='512'/><text x='50%' y='50%' font-size='300' fill='white' text-anchor='middle' dy='.3em' font-weight='bold'>💳</text></svg>",
+      "src": "/app/icon-512x512.svg",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
@@ -25,8 +25,14 @@
   "categories": ["finance", "productivity"],
   "screenshots": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><defs><linearGradient id='grad' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' style='stop-color:%23667eea;stop-opacity:1' /><stop offset='100%' style='stop-color:%23764ba2;stop-opacity:1' /></linearGradient></defs><rect fill='url(%23grad)' width='540' height='720'/><text x='270' y='360' font-size='100' fill='white' text-anchor='middle' dy='.3em' font-weight='bold'>💳 Wallet</text></svg>",
-      "sizes": "540x720",
+      "src": "/app/icon-512x512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/app/icon-192x192.svg",
+      "sizes": "192x192",
       "type": "image/svg+xml",
       "form_factor": "narrow"
     }
@@ -36,10 +42,10 @@
       "name": "Send Money",
       "short_name": "Send",
       "description": "Send money to another account",
-      "url": "/app/?action=send",
+      "url": "/app/index.html?action=send",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dy='.3em'>↗️</text></svg>",
+          "src": "/app/icon-192x192.svg",
           "sizes": "192x192",
           "type": "image/svg+xml"
         }
@@ -49,10 +55,10 @@
       "name": "View Balance",
       "short_name": "Balance",
       "description": "Check your account balance",
-      "url": "/app/?action=balance",
+      "url": "/app/index.html?action=balance",
       "icons": [
         {
-          "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect fill='%23667eea' width='192' height='192'/><text x='50%' y='50%' font-size='80' fill='white' text-anchor='middle' dy='.3em'>💰</text></svg>",
+          "src": "/app/icon-192x192.svg",
           "sizes": "192x192",
           "type": "image/svg+xml"
         }
