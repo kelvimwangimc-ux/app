@@ -2,7 +2,9 @@ const CACHE_NAME = 'digital-wallet-v1';
 const urlsToCache = [
   '/app/',
   '/app/index.html',
-  '/app/manifest.json'
+  '/app/manifest.json',
+  '/app/icon-192x192.svg',
+  '/app/icon-512x512.svg'
 ];
 
 // Install Service Worker
